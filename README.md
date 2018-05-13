@@ -15,6 +15,12 @@ You can find further detail at the [website of CIC](http://www.unb.ca/cic).
 
 # Usage
 
+Calling __capture_interface_pcap.sh__ will capture the packets since the beginning
+    until specific time in the script, periodically.
+Each time that PCAP file is saved,
+    the script __convert_pcap_csv.sh__ will be called the converter, __CICFlowMeter__.
+
+
 ```bash
 capture_interface_pcap.sh <interface> <pcap_output_dir> [priviledged_user_name]
 ```
@@ -40,7 +46,7 @@ capture_interface_pcap.sh eth0 output_dir bobuser
 ### Download and Use
 
 Get the package from the [website of CIC](http://www.unb.ca/cic/_assets/documents/cicflowmeter-v3.zip).
-Then, unpack and revise the code in script _CICFlowMeter-3.0/bin/CICFlowMeter_ by refering with real path:
+Then, unpack and revise the code in script __CICFlowMeter-3.0/bin/CICFlowMeter__ by refering with real path:
 
     DEFAULT_JVM_OPTS='"-Djava.library.path=../lib/native"'
 
