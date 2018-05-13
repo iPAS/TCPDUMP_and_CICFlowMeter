@@ -12,6 +12,12 @@ You can find further detail at the [website of CIC](http://www.unb.ca/cic).
 * This repository is maintained Pasakorn Tiwatthanont, <ptiwatthanont@gmail.com>.
 * Thank you for guiding relevant tools to Mr. Preecha Pangsuban <preecha@yru.ac.th>.
 
+For trying, just run:
+
+```bash
+try_me.sh
+```
+
 
 # Usage
 
