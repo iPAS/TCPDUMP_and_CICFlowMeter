@@ -52,7 +52,7 @@ capture_interface_pcap.sh eth0 output_dir bobuser
 # Note on Issues
 <!------------------------------------------------------------------------------------------------->
 
-## Fix the _Permission Denied_ Problem
+## To Fix the _Permission Denied_ Problem
 
 In some case of using on Ubuntu with __Apparmor__, you may has a 'permission denied' issue
     when __tcpdump__ tries to execute a script.
@@ -75,7 +75,32 @@ sudo service apparmor restart
 ```
 
 
-## How to Make CICFlowMeter Command-line Version
+## To Fix _java.lang.UnsatisfiedLinkError_ Problem
+
+Due to the libpcap-dev package was not installed.
+The error will be shown:
+
+    Exception in thread "main" java.lang.UnsatisfiedLinkError: com.slytechs.library.NativeLibrary.dlopen(Ljava/lang/String;)J
+            at com.slytechs.library.NativeLibrary.dlopen(Native Method)
+            at com.slytechs.library.NativeLibrary.<init>(Unknown Source)
+            at com.slytechs.library.JNILibrary.<init>(Unknown Source)
+            at com.slytechs.library.JNILibrary.loadLibrary(Unknown Source)
+            at com.slytechs.library.JNILibrary.register(Unknown Source)
+            at com.slytechs.library.JNILibrary.register(Unknown Source)
+            at com.slytechs.library.JNILibrary.register(Unknown Source)
+            at org.jnetpcap.Pcap.<clinit>(Unknown Source)
+            at cic.cs.unb.ca.jnetpcap.PacketReader.config(PacketReader.java:58)
+            at cic.cs.unb.ca.jnetpcap.PacketReader.<init>(PacketReader.java:52)
+            at cic.cs.unb.ca.ifm.CICFlowMeter.main(CICFlowMeter.java:93)
+
+Please install via:
+
+```bash
+sudo apt install libpcap-dev
+```
+
+
+## To Build CICFlowMeter Command-line Version
 
 The forked and revised version of ISCX/CICFlowMeter can be found at https://github.com/iPAS/CICFlowMeter.
 Nevertheless, in case you need to know how to make it by yourself,
