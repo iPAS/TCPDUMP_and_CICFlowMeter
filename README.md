@@ -1,5 +1,7 @@
 
+<!------------------------------------------------------------------------------------------------->
 # Introduction
+<!------------------------------------------------------------------------------------------------->
 
 This project is about capturing packets flow through a network interface,
     save each specific-size chunk into a PCAP file,
@@ -19,7 +21,9 @@ try_me.sh
 ```
 
 
+<!------------------------------------------------------------------------------------------------->
 # Usage
+<!------------------------------------------------------------------------------------------------->
 
 Calling __capture_interface_pcap.sh__ will capture the packets since the beginning
     until specific time in the script, periodically.
@@ -44,10 +48,47 @@ capture_interface_pcap.sh eth0 output_dir bobuser
 ```
 
 
-# Note on Creation
+<!------------------------------------------------------------------------------------------------->
+# Note on Issues
+<!------------------------------------------------------------------------------------------------->
+
+## Fix the _Permission Denied_ Problem
+
+In some case of using on Ubuntu with __Apparmor__, you may has a 'permission denied' issue
+    when __tcpdump__ tries to execute a script.
+    It is a security measure. To relax, please add the following line into file
+    __/etc/apparmor.d/usr.sbin.tcpdump__:
+
+```
+/usr/sbin/tcpdump {
+  ...
+  # for -z
+  /**/* ixr,      # <-- add me!
+  ...
+}
+```
+
+Then, restart the service:
+
+```bash
+sudo service apparmor restart
+```
 
 
-## Build CICFlowMeter
+## How to Make CICFlowMeter Command-line Version
+
+The forked and revised version of ISCX/CICFlowMeter can be found at https://github.com/iPAS/CICFlowMeter.
+Nevertheless, in case you need to know how to make it by yourself,
+    or if the next version need the maintenance again,
+    the guidance is directed by the following clues.
+
+### Get CICFlowMeter
+
+```bash
+git clone https://github.com/ISCX/CICFlowMeter.git
+```
+
+Then, go inside.
 
 ### Get Gradle (option)
 
@@ -157,16 +198,9 @@ All revised files will be gone, even yours.
 ### Install
 
 The built package is in directory __CICFlowMeter_repo/build/distributions/__.
+Get and place in a directory that fit.
 
-
-## Download and Use CICFlowMeter
-
-Get the package from the [website of CIC](http://www.unb.ca/cic/_assets/documents/cicflowmeter-v3.zip).
-However, this is not recommended.
-It's not totally updated.
-
-
-## Update the Runner Script
+### Update the Runner Script
 
 After the distribution package was gotten,
     unpack and revise the code in script __CICFlowMeter-3.0/bin/CICFlowMeter__:
