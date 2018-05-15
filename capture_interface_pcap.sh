@@ -3,14 +3,13 @@
 interface=$1
 output_dir=$2
 user=$3
+rotate_interval=60
 
 [[ "$(grep -c "$interface" /proc/net/dev)" == "0" ]] && echo "The interface is NOT found!" && exit 255
 [[ ! -d "$output_dir" ]] && echo "The output directory does NOT exist!" && exit 255
 
 #output_file=${output_dir}/$(date +'%Y-%m-%d-%H:%M:%S.pcap')
 output_file_format=${output_dir}/'%Y-%m-%d-%H:%M:%S.pcap'
-
-rotate_interval=5
 options="-n -nn -N -s 0"
 
 [[ ! -z "${user}" ]] && options="${options} -Z ${user}"  #$(id -nu 1000)
