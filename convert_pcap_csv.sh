@@ -8,4 +8,21 @@ pcap_file="$1"
 #echo $script_dir
 
 script_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"  # On the same directory.
-"${script_dir}"/CICFlowMeter-3.0/bin/CICFlowMeter "${pcap_file}" "${script_dir}"/csv
+output_dir="${script_dir}"/csv
+# CICFlowMeter-3.0/bin/CICFlowMeter
+"${script_dir}"/CICFlowMeters/CICFlowMeter-3.0/bin/CICFlowMeter "${pcap_file}" "${output_dir}"
+
+
+# CICFlowMeterV2
+# cic_dir="${script_dir}"/CICFlowMeters/CICFlowMeterV2/
+# java -Djava.library.path="${cic_dir}"/jnetpcap -jar "${cic_dir}"/CICFlowMeter.jar "${pcap_file}" "${output_dir}/2"
+
+
+# # CICFlowMeterV3-jnetpcap-1.3
+# cic_dir="${script_dir}"/CICFlowMeters/CICFlowMeterV3-jnetpcap-1.3/
+# java -Djava.library.path="${cic_dir}"/jnetpcap -jar "${cic_dir}"/CICFlowMeterV3.jar "${pcap_file}" "${output_dir}/3.1.3"
+
+
+# # CICFlowMeterV3-jnetpcap-1.4
+# cic_dir="${script_dir}"/CICFlowMeters/CICFlowMeterV3-jnetpcap-1.4/
+# java -Djava.library.path="${cic_dir}"/jnetpcap -jar "${cic_dir}"/CICFlowMeterV3.jar "${pcap_file}" "${output_dir}/3.1.4"
