@@ -14,6 +14,13 @@ You can find further detail at the [website of CIC](http://www.unb.ca/cic).
 * This repository is maintained Pasakorn Tiwatthanont, <ptiwatthanont@gmail.com>.
 * Thank you for guiding relevant tools to Mr. Preecha Pangsuban <preecha@yru.ac.th>.
 
+
+<!------------------------------------------------------------------------------------------------->
+# Usage
+<!------------------------------------------------------------------------------------------------->
+
+## Quick Start
+
 For trying, just run:
 
 ```bash
@@ -21,9 +28,7 @@ try_me.sh
 ```
 
 
-<!------------------------------------------------------------------------------------------------->
-# Usage
-<!------------------------------------------------------------------------------------------------->
+## To Run Literally
 
 Calling __capture_interface_pcap.sh__ will capture the packets since the beginning
     until specific time in the script, periodically.
