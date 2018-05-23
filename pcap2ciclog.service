@@ -14,7 +14,7 @@ WorkingDirectory=/home/rapidadmin/TCPDUMP_and_CICFlowMeter
 #User=sammy
 #Group=sammy
 
-ExecStart=pcap2ciclog.sh
+ExecStart=/home/rapidadmin/TCPDUMP_and_CICFlowMeter/pcap2ciclog.sh
 Restart=on-failure
 KillSignal=SIGINT
 
