@@ -2,26 +2,49 @@
 
 pcap_file="$1"
 [[ ! -f "${pcap_file}" ]] && echo "PCAP file ${pcap_file} does NOT exist!" && exit 255
-
-#echo $pcap_file
-#echo $script_dir
-
 script_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"  # On the same directory.
 output_dir="${script_dir}"/csv
 
+pcap_dir="${script_dir}"/tmp
+pcap_tmp="${pcap_dir}"/$(basename "${pcap_file}")
+
+
+## Clean 
+cancel() {
+	echo "+++ Converter is being canceled +++"
+	echo "+++ The last conversion, ${pcap_file}, is not completed!"
+	echo
+	exit 0
+}
+trap 'cancel' INT TERM
+
+cleanup() {
+#    echo "+++ Remove ${pcap_file}"
+#    rm -f "${pcap_file}"
+
+	echo "+++ Finish the conversion"
+	echo
+    exit 0
+}
+trap 'cleanup' EXIT
+
+
+## Convert
+echo "+++ CICFlowMeter PCAP-to-CSV Converter +++"
 
 # CICFlowMeter-3.0/bin/CICFlowMeter
 "${script_dir}"/CICFlowMeters/CICFlowMeter-3.0/bin/CICFlowMeter "${pcap_file}" "${output_dir}"
 
+echo "+++ Remove ${pcap_file}"
+rm -f "${pcap_file}"
 
-pcap_dir="${script_dir}"/tmp  # On the same directory.
-mv "${pcap_file}" "${pcap_dir}"
-pcap_file="${pcap_dir}"/$(basename "${pcap_file}")
 
-echo '---'
-echo "pcap_dir:" "${pcap_dir}"
-ls "${pcap_dir}"
-echo '---'
+
+
+## Rearrange the PCAP due to other CICFlowMeter versions' compatibility
+#echo "> move ${pcap_file} to ${pcap_tmp}"
+#mv "${pcap_file}" "${pcap_dir}"
+
 
 # CICFlowMeterV2
 #cic_dir="${script_dir}"/CICFlowMeters/CICFlowMeterV2
@@ -32,11 +55,14 @@ echo '---'
 
 # CICFlowMeterV3-jnetpcap-1.3
 #cic_dir="${script_dir}"/CICFlowMeters/CICFlowMeterV3-jnetpcap-1.3
-#java -Djava.library.path="${cic_dir}" -jar "${cic_dir}"/CICFlowMeterV3.jar "${pcap_file}" "${output_dir}/3.1.3/"
+#java -Djava.library.path="${cic_dir}" -jar "${cic_dir}"/CICFlowMeterV3.jar "${pcap_tmp}" "${output_dir}/3.1.3/"
 
 # CICFlowMeterV3-jnetpcap-1.4
 #cic_dir="${script_dir}"/CICFlowMeters/CICFlowMeterV3-jnetpcap-1.4
-#java -Djava.library.path="${cic_dir}" -jar "${cic_dir}"/CICFlowMeterV3.jar "${pcap_file}" "${output_dir}/3.1.4/"
+#java -Djava.library.path="${cic_dir}" -jar "${cic_dir}"/CICFlowMeterV3.jar "${pcap_tmp}" "${output_dir}/3.1.4/"
 
 
-rm -f "${pcap_file}"
+#echo "+++ remove ${pcap_tmp}"
+#rm -f "${pcap_tmp}"
+
+
