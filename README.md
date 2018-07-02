@@ -53,6 +53,40 @@ capture_interface_pcap.sh eth0 output_dir bobuser
 ```
 
 
+## To Run on Startup
+
+Edit the working directory in file __pcap2ciclog.service__, and also
+    the executed script shoud be refered with absolute path:
+
+```
+...
+[Service]
+WorkingDirectory=/home/../../TCPDUMP_and_CICFlowMeter
+ExecStart=/home/../../TCPDUMP_and_CICFlowMeter/pcap2ciclog.sh
+...
+
+```
+
+Then, link it into the directory __/lib/systemd/system__:
+
+```bash
+cd /lib/systemd/system
+sudo ln -sf <the-dir>/pcap2ciclog.service  
+```
+
+Enable the service:
+
+```bash
+sudo systemctl enable pcap2ciclog.service
+```
+
+Finally, let's get started!
+
+```bash
+sudo systemctl start pcap2ciclog.service
+```
+
+
 <!------------------------------------------------------------------------------------------------->
 # Note on Issues
 <!------------------------------------------------------------------------------------------------->

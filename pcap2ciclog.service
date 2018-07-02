@@ -1,0 +1,26 @@
+## Capture and Convert internet traffic to CICFlowMeter log file.
+#
+# https://www.digitalocean.com/community/tutorials/systemd-essentials-working-with-services-units-and-the-journal
+# https://www.digitalocean.com/community/tutorials/how-to-connect-your-internet-of-things-with-node-red-on-ubuntu-16-04#step-4-%E2%80%94-setting-up-nginx
+
+[Unit]
+Description=PCAP-to-CIClog Collection and Conversion
+After=syslog.target network.target
+
+
+[Service]
+WorkingDirectory=/home/rapidadmin/TCPDUMP_and_CICFlowMeter
+
+#User=sammy
+#Group=sammy
+
+ExecStart=/home/rapidadmin/TCPDUMP_and_CICFlowMeter/pcap2ciclog.sh
+Restart=on-failure
+KillSignal=SIGINT
+
+SyslogIdentifier=pcap2ciclog
+StandardOutput=syslog
+
+
+[Install]
+WantedBy=multi-user.target
