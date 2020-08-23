@@ -287,3 +287,8 @@ After the distribution package was gotten,
 
         eval set -- $DEFAULT_JVM_OPTS $JAVA_OPTS $CIC_FLOW_METER_OPTS -classpath "\"$CLASSPATH\"" cic.cs.unb.ca.ifm.CICFlowMeter "$APP_ARGS"
 
+
+## To Build CICFlowMeter-4
+
+- __gradle__ and __maven__ are required
+
