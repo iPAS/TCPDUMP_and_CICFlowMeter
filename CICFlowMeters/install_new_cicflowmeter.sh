@@ -17,7 +17,8 @@ gradle clean
 gradle build
 cd ..
 
-cp CICFlowMeter_repo/build/distributions/CICFlowMeter-${version}.zip .
-unzip CICFlowMeter-${version}.zip
-rm -f CICFlowMeter-${version}.zip
+# cp CICFlowMeter_repo/build/distributions/CICFlowMeter-${version}.zip .
+# unzip CICFlowMeter-${version}.zip
+# rm -f CICFlowMeter-${version}.zip
+tar -xf CICFlowMeter_repo/build/distributions/CICFlowMeter-${version}.tar -C .
 cp -f CICFlowMeter.revised CICFlowMeter-${version}/bin/CICFlowMeter
