@@ -9,7 +9,7 @@ echo ">>> Script dir: ${script_dir}"
 output_dir="${script_dir}"/csv
 
 
-## Clean 
+## Clean
 cancel() {
 	echo "+++ Converter is being canceled +++"
 	echo "+++ The last conversion, ${pcap_file}, is not completed!"
@@ -35,7 +35,11 @@ echo "    Input file: ${pcap_file}"
 echo "    Output dir: ${output_dir}"
 
 # CICFlowMeter-3.0/bin/CICFlowMeter
-"${script_dir}"/CICFlowMeters/CICFlowMeter-3.0/bin/CICFlowMeter "${pcap_file}" "${output_dir}"
+# cic="${script_dir}"/CICFlowMeters/CICFlowMeter-3.0/bin/CICFlowMeter
+cic="${script_dir}"/CICFlowMeters/CICFlowMeter-4.0/bin/CICFlowMeter
+
+"${cic}" "${pcap_file}" "${output_dir}"
+
 
 echo "+++ Remove ${pcap_file}"
 rm -f "${pcap_file}"
