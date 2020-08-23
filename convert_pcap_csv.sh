@@ -2,11 +2,11 @@
 
 pcap_file="$1"
 [[ ! -f "${pcap_file}" ]] && echo "PCAP file ${pcap_file} does NOT exist!" && exit 255
-script_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"  # On the same directory.
-output_dir="${script_dir}"/csv
 
-pcap_dir="${script_dir}"/tmp
-pcap_tmp="${pcap_dir}"/$(basename "${pcap_file}")
+script_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"  # On the same directory.
+echo ">>> Script dir: ${script_dir}"
+
+output_dir="${script_dir}"/csv
 
 
 ## Clean 
@@ -31,6 +31,8 @@ trap 'cleanup' EXIT
 
 ## Convert
 echo "+++ CICFlowMeter PCAP-to-CSV Converter +++"
+echo "    Input file: ${pcap_file}"
+echo "    Output dir: ${output_dir}"
 
 # CICFlowMeter-3.0/bin/CICFlowMeter
 "${script_dir}"/CICFlowMeters/CICFlowMeter-3.0/bin/CICFlowMeter "${pcap_file}" "${output_dir}"
@@ -42,6 +44,9 @@ rm -f "${pcap_file}"
 
 
 ## Rearrange the PCAP due to other CICFlowMeter versions' compatibility
+# pcap_dir="${script_dir}"/tmp
+# pcap_tmp="${pcap_dir}"/$(basename "${pcap_file}")
+
 #echo "> move ${pcap_file} to ${pcap_tmp}"
 #mv "${pcap_file}" "${pcap_dir}"
 

@@ -71,7 +71,7 @@ Then, link it into the directory __/lib/systemd/system__:
 
 ```bash
 cd /lib/systemd/system
-sudo ln -sf <the-dir>/pcap2ciclog.service  
+sudo ln -sf <the-dir>/pcap2ciclog.service
 ```
 
 Enable the service:
@@ -137,6 +137,8 @@ Please install via:
 ```bash
 sudo apt install libpcap-dev
 ```
+
+For furture OSs, please follow the guildline on https://javatutorial.net/capture-network-packages-java.
 
 
 ## To Build CICFlowMeter Command-line Version
