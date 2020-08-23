@@ -79,7 +79,7 @@ for jar in $APP_HOME/lib/*.jar; do
     CLASSPATH=$CLASSPATH:$jar
 done
 CLASSPATH=${CLASSPATH:1}
-echo "CLASSPATH: $CLASSPATH"
+#echo "CLASSPATH: $CLASSPATH"
 
 # Determine the Java command to use to start the JVM.
 if [ -n "$JAVA_HOME" ] ; then
